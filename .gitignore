@@ -1,1 +1,6 @@
-/.idea/*
+# Created by .ignore support plugin (hsz.mobi)
+
+.idea/*.*
+
+*.bat
+*.sh
