@@ -12,7 +12,7 @@ sparkconf = SparkConf().setMaster('local').setAppName('wordcount')
 sc = SparkContext(conf=sparkconf)
 
 # Create a RDD
-myfile = sc.textFile('hdfs://cima-prod-b:8020/tmp/prass016/README.md')
+myfile = sc.textFile('hdfs://xxx:8020/tmp/prass016/README.md')
 
 counts = myfile.flatMap(lambda line: line.split(" ")) \
     .filter(lambda word: string_not_contains(word, 'http')) \
@@ -24,5 +24,5 @@ counts.persist()
 # counts RDD is a tuple
 bigcounts = counts.filter(lambda k: k[1] > 2)
 
-bigcounts.saveAsTextFile("hdfs://cima-prod-b:8020/tmp/prass016/output_1")
+bigcounts.saveAsTextFile("hdfs://xxx:8020/tmp/prass016/output_1")
 
