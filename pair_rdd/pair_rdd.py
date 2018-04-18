@@ -1,6 +1,10 @@
 from pyspark import SparkContext, SparkConf
 
 
+"""
+Pair RDD - transformations and actions
+"""
+
 sparkconf = SparkConf().setMaster('local').setAppName('PairRDD')
 sc = SparkContext(conf=sparkconf)
 
@@ -34,7 +38,7 @@ print 'input************'
 print wordsrdd.collect()
 
 print 'flatmapvalues'
-# used to tokenize
+# use to tokenize
 print wordsrdd.flatMapValues(lambda x: x).collect()
 
 print 'keys'
