@@ -10,4 +10,3 @@ apple_df = spark.read.csv(os.path.join(res_path, 'Apple.csv'))
 google_df = spark.read.csv(os.path.join(res_path, 'Google.csv'))
 print apple_df.first()
 print apple_df.take(5)
-
