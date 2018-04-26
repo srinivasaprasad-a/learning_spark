@@ -14,3 +14,5 @@ users_schema = StructType(users_fields)
 
 users_df = spark.read.schema(users_schema).csv(users_file)
 users_df.show(5)
+
+spark.stop()
