@@ -1,11 +1,11 @@
-from pyspark import SparkContext, SparkConf
-
-
 """
 Simple map and reduce using spark
 """
 
-sparkconf = SparkConf().setMaster('local').setAppName('parallelize')
+from pyspark import SparkContext, SparkConf
+
+
+sparkconf = SparkConf().setMaster('local').setAppName('Simple RDD')
 sc = SparkContext(conf=sparkconf)
 
 rdd1 = sc.parallelize([1, 2, 3, 4, 5, 6])

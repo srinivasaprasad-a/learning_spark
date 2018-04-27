@@ -1,9 +1,9 @@
-from pyspark import SparkContext, SparkConf
-
-
 """
 aggregate function on sequence input
 """
+
+from pyspark import SparkContext, SparkConf
+
 
 sparkconf = SparkConf().setAppName('Aggregate').setMaster('local')
 sc = SparkContext(conf=sparkconf)
@@ -14,8 +14,9 @@ rdd2 = sc.parallelize([7, 8, 9, 4, 8, 6, 7, 8], 2)
 rstrdd = rdd2.aggregate(0,                                  # zerovalue
                         (lambda acc, value: acc + value),   # sequence operation
                         (lambda acc1, acc2: acc1 + acc2))   # combiner operation
-# dataflow - say for example [7, 8, 9, 4] is in 1st partition and [8, 6, 7, 8] is in 2nd partition
+
 """
+dataflow - say for example [7, 8, 9, 4] is in 1st partition and [8, 6, 7, 8] is in 2nd partition
 partition-1
 7   =>  accumulator[7]=seqOp(7, zerovalue)  =>  7+0=7
 8   =>  accumulator[8]=seqOp(8, zerovalue)  =>  8+0=8
