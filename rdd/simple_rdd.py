@@ -16,4 +16,4 @@ print rstrdd.collect()
 
 rstrdd = rdd1.reduce(lambda x, y: x+y)
 print rstrdd
-#output - 21
+# output - 21
