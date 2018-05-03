@@ -7,12 +7,11 @@ sc = SparkContext(conf=sparkconf)
 nums = range(1, 10)             # Only 9 elements i.e. all the numbers between 1 and 10, including 1, but excluding 10
 rdd = sc.parallelize(nums)
 # If you explicitly set the numSlices, then it will be always numSlices number of partitions.
-# numSlices takes precedence over defaultParallelism set by threads
-# rdd = sc.parallelize(nums, 2)
-# In this case - 2 partitions, irrespective of number of threads
+# numSlices takes precedence over threads, threads over defaultParallelism (spark.default.parallelism)
+
+# rdd = sc.parallelize(nums, 2) # In this case - 2 partitions, irrespective of number of threads
 
 print "defaultParallelism: " + str(sc.defaultParallelism)
-
 print "partitioner: " + str(rdd.partitioner)
 print "no. of partitions: " + str(rdd.getNumPartitions())
 print "rdd partition structure: " + str(rdd.glom().collect())
