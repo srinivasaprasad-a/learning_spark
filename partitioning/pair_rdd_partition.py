@@ -1,7 +1,7 @@
 from pyspark import SparkContext, SparkConf
 
 
-sparkconf = SparkConf().setAppName('Part1').setMaster('local[20]')
+sparkconf = SparkConf().setAppName('RDD Partition').setMaster('local[20]')
 sc = SparkContext(conf=sparkconf)
 
 print "defaultParallelism: " + str(sc.defaultParallelism)
@@ -11,11 +11,12 @@ input_rdd = sc.parallelize(nums).map(lambda x: (x, x))
 # It is recommended to persist that partitioned RDD, rather than to partition every time.
 rdd = input_rdd.partitionBy(5).persist()
 # In case of pairRDD partitionBy value takes precedence over num_of_threads or default parallelism
+# Which partition each key-value goes depends on the value of hash(key) % num_partitions
+# Actual number of partitions can be less than the num_partitions, due the above formula, but not more than it
 
 # Default partitioner is hashpartitioner
 print "partitioner: " + str(rdd.partitioner)
 print "no. of partitions: " + str(rdd.getNumPartitions())
-# Which partition each key-value goes depends on the value of hash(key) % num_partitions
 print "rdd partition structure: " + str(rdd.glom().collect())
 
 """
