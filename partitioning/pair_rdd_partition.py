@@ -12,7 +12,7 @@ input_rdd = sc.parallelize(nums).map(lambda x: (x, x))
 rdd = input_rdd.partitionBy(5).persist()
 # In case of pairRDD partitionBy value takes precedence over num_of_threads or default parallelism
 # Which partition each key-value goes depends on the value of hash(key) % num_partitions
-# Actual number of partitions could be less than the num_partitions, due the above formula, but not more than it
+# Actual number of non-empty partitions could be less than the num_partitions, due the above formula, but not more
 
 # Default partitioner is hashpartitioner
 print "partitioner: " + str(rdd.partitioner)

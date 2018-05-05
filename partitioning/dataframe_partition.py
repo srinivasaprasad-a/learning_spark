@@ -21,12 +21,13 @@ trans_rdd = spark.sparkContext\
 
 trans_df = spark.createDataFrame(trans_rdd)
 
-# Initial number partitions will be based on the default_parallelism i.e. based on the num of threads
+# Initial number partitions will be based on the num_of_threads, else default_parallelism
 print("Number of partitions: {}".format(trans_df.rdd.getNumPartitions()))
 print("Partitioner: {}".format(trans_df.rdd.partitioner))
 print("Partitions structure: {}".format(trans_df.rdd.glom().collect()))
 
-# After repartition, num of partitions is based on the spark.sql.shuffle.partitions, if no number is mentioned in the repartition method
+# After repartition, num of partitions is based on the spark.sql.shuffle.partitions, if no number is mentioned,
+# then it is based on the number in the repartition method
 trans_df2 = trans_df.repartition("country")             # Repartition by column
 # trans_df2 = trans_df.repartition(10, "country")             # Repartition by column
 # if you are increasing the number of partitions use repartition()(performing full shuffle)
