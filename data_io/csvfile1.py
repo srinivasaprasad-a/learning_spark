@@ -17,6 +17,6 @@ input_dir = os.path.join(os.path.dirname(os.path.realpath('__file__')), '..', 'r
 users_file = os.path.join(input_dir, 'users.csv')
 
 csv_file = sc.textFile(users_file).map(lambda x: csvrowreader(x))
-csv_file.take(5)
+print csv_file.take(5)
 
 spark.stop()
