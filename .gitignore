@@ -1,6 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 .idea/*.*
+file_io/metastore_db/*.*
+
 
 *.bat
 *.sh
+*.log
