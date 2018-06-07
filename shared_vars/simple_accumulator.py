@@ -7,14 +7,16 @@ from pyspark import SparkContext, SparkConf
 
 def f(x):
     global acc
-    acc += x
+    acc += x   # acc = acc + x
 
 
-sparkconf = SparkConf().setAppName('Simple Accumulator').setMaster('local')
+sparkconf = SparkConf().setAppName('Simple Accumulator').setMaster('local[*]')
 sc = SparkContext(conf=sparkconf)
 
 nums = range(1, 10)
 input_rdd = sc.parallelize(nums)
+print input_rdd.collect()
+print input_rdd.glom().collect()
 
 acc = sc.accumulator(0)
 input_rdd.foreach(f)
